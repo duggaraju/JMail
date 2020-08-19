@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE ACTIONS SYSTEM "actions.dtd">
+<ACTIONS>
+	<ACTION NAME="jmail.show">
+  	<CODE>
+      view.getDockableWindowManager().toggleDockableWindow("jmail.dockable");
+    </CODE>
+    <IS_SELECTED>
+    	return view.getDockableWindowManager().isDockableWindowVisible("jmail.dockable");     
+    </IS_SELECTED>
+  </ACTION>
+  <ACTION NAME="jmail.mail">
+    <CODE>
+      jmail.JMailPlugin.getInstance().mailBuffer(view);
+    </CODE>
+  </ACTION>
+</ACTIONS>

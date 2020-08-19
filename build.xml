@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ * :mode=xml:tabSize=2:indentSize=2:noTabs=true:
+ * :folding=explicit:collapseFolds=1:wrap=none:maxLineLen=80:
+ *
+ * $Source: /cvsroot/jedit/plugins/JMail/build.xml,v $
+ * Copyright (C) 2005 Prakash Duggaraju
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+-->
+
+<project name="JMail" default="dist" basedir=".">
+
+  <property file="../build.properties"/>
+  <property file="build.properties"/>
+
+  <path id="classpath">
+    <pathelement location="lib/activation.jar"/>
+    <pathelement location="lib/mail.jar"/>
+    <pathelement location="${jedit.install.dir}/jedit.jar"/>
+  </path>
+
+  
+  <target name="init">
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${output.dir}"/>
+    <mkdir dir="${install.dir}"/>
+  </target>
+
+  <target name="merged_lib" depends="init" description="merge mail jars">
+    <jar destfile="${dist.dir}/merged_mail.jar">
+      <zipgroupfileset dir="lib">
+        <include name="*.jar"/>
+      </zipgroupfileset>
+    </jar>
+  </target>
+  
+  <target name="clean" description="Clean the project">
+    <delete includeemptydirs="true" quiet="true">
+      <fileset dir="${output.dir}"/>
+      <fileset dir="${dist.dir}"/>
+    </delete>
+  </target>
+  
+  <target name="compile" description="Compile Java source files" depends="init">
+    <javac destdir="${output.dir}" classpathref="classpath"
+           debug="${javac.debug}" nowarn="${javac.nowarn}"
+           deprecation="${javac.deprecation}" >
+      <src path="."/>
+    </javac>
+  </target>
+  
+  <target name="copy" description="Copy files to output directory"
+          depends="init">
+    <patternset id="copy.patterns">
+      <include name="**/*.gif"/>
+      <include name="**/*.jpg"/>
+      <include name="**/*.png"/>
+      <include name="**/*.xml"/>
+      <include name="**/*.props"/>
+    </patternset>
+  
+    <copy todir="${output.dir}">
+      <fileset dir=".">
+        <patternset refid="copy.patterns"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="dist" description="creates distributable jar file" depends="compile,merged_lib">
+    <jar destfile="${dist.dir}/${jar.name}" >
+      <fileset dir="${output.dir}"/>
+      <fileset dir=".">
+        <include name="JMail.props"/>
+        <include name="index.html"/>
+        <include name="*.xml"/>
+      </fileset>
+    </jar>
+    <copy todir="${dist.dir}">
+      <fileset dir="lib">
+       <include name="merged_mail.jar" />
+      </fileset>
+    </copy>
+    
+    <copy todir="${install.dir}">
+      <fileset dir="${dist.dir}">
+        <include name="${jar.name}"/>
+        <include name="merged_mail.jar"/>
+      </fileset>
+    </copy>
+  </target>
+</project>

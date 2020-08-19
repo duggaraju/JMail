@@ -1,0 +1,86 @@
+#Debugger Plugin Properties
+plugin.jmail.JMailPlugin.name=JMail 
+plugin.jmail.JMailPlugin.author=Prakash K Duggaraju
+plugin.jmail.JMailPlugin.version=1.4
+
+plugin.jmail.JMailPlugin.activate=defer
+plugin.jmail.JMailPlugin.menu=jmail.show jmail.mail
+plugin.jmail.JMailPlugin.option-group=jmail.general jmail.servers
+plugin.jmail.JMailPlugin.docs=index.html
+
+plugin.jmail.JMailPlugin.depend.0=jedit 04.02.00.00
+plugin.jmail.JMailPlugin.depend.1=jdk 1.4
+plugin.jmail.JMailPlugin.jars=merged_mail.jar
+#plugin.jmail.JMailPlugin.jars=mail.jar activation.jar
+
+options.jmail.general.label=General Options
+options.jmail.general.code=new jmail.options.GeneralOptions();
+
+options.jmail.servers.label=Server Options
+options.jmail.servers.code=new jmail.options.ServerOptions();
+
+#Dockable Debugger window
+jmail.dockable.label=JMail
+jmail.dockable.title=JMail
+
+jmail.username=Username:
+jmail.password=Password:
+
+jmail.show.label=View Mail
+jmail.mail.label=Mail Buffer
+
+
+options.jmail.nameLabel=Name:
+options.jmail.emailLabel=E-Mail:
+options.jmail.outgoingLabel=SMTP Server:
+options.jamil.incomingLabel=Mail Servers:
+
+options.jmail.include=Include original message
+options.jmail.attach=Attach original message
+options.jmail.indent=Include and indent original message
+options.jmail.prefix=Include and prefix original message
+
+options.jmail.replyLabel=When replying:
+options.jmail.forwardLabel=When forwarding:
+
+message.icon=envelope.gif
+attachment.icon=paper_clip.gif
+ascending.icon=AscendSort.gif
+descending.icon=DescendSort.gif
+left.icon=left.gif
+right.icon=right.gif
+top.icon=top.gif
+stacked.icon=stacked.gif
+multi.icon=multi.gif
+unread.icon=unread.gif
+read.icon=read.gif
+deleted.icon=deleted.gif
+paperclip.icon=paperclip.gif
+
+jmail.reply.label=Reply
+jmail.replyall.label=Reply All
+jmail.forward.label=Forward
+jmail.delete.label=Delete
+jmail.undelete.label=Undelete
+jmail.move.label=Move
+
+jmail.view.label=View
+jmail.save.label=Save ...
+jmail.saveall.label=Save All ...
+
+jmail.refresh.label=Refresh
+jmail.expunge.label=Expunge
+jmail.rename.label=Rename...
+jmail.newfolder.label=New Folder...
+
+jmail.attachment.popup=jmail.save jmail.view - jmail.saveall
+
+jmail.message.popup=jmail.reply jmail.replyall jmail.forward - jmail.delete jmail.move
+
+jmail.folder.popup=jmail.refresh jmail.expunge - jmail.delete jmail.rename jmail.newfolder
+
+
+
+jmail.store.popup=jmail.connect jmail.disconnect
+jmail.connect.label=Connect
+jmail.disconnect.label=Disconnect
